@@ -7,4 +7,4 @@ Files are stored temporary in the folder.
 
 To upload large files, change the max_execution_time to high limit in the file php.ini stored in xampp/php/
 
-In localhost/phpmyadmin, create a database named grootan.
+In localhost/phpmyadmin site, create a database named grootan.
