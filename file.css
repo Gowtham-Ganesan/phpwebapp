@@ -44,7 +44,7 @@ h3 {
     color: white;
     position: absolute;
     left: 475px;
-    top: 250px;
+    top: 260px;
 }
 h4 {
     font-weight: normal;
@@ -61,3 +61,5 @@ input[type=submit] {
     position: absolute;
     width: 10em;  height: 2em;    
 }
+
+#progress{position: relative;top: 50px;}
