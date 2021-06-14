@@ -58,8 +58,12 @@ h4 {
 }
 input[type=submit] {
     border: none;
-    position: absolute;
+    position: relative;
+    left: -370px;
+    top: -40px;
     width: 10em;  height: 2em;    
 }
 
 #progress{position: relative;top: 50px;}
+
+#information{position: relative;top: 50px; left: 15px; color: white;}
