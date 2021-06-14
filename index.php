@@ -5,7 +5,7 @@ include "config.php";
 <!DOCTYPE html>
 <html>      
 <head>
-    <title>Upload CSV File into Database</title>
+    <title>Batman</title>
     <link rel="stylesheet" href="file.css">
 </head>
 <body>
