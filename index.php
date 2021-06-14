@@ -7,7 +7,21 @@ include "config.php";
 <head>
     <title>Upload CSV File into Database</title>
     <link rel="stylesheet" href="file.css">
-    <?php
+</head>
+<body>
+<h1>Batman Server</h1>
+<h2>Upload the CSV data to database</h2>
+<h3>
+        <form method='post' action='' enctype="multipart/form-data">
+        <label for="myfile">Select a file:</label>
+            <input type="file" name="importfile"><br><br>
+            <h4><input type="submit" name="but_import" value='Start'></h4>
+        </form>
+</h3>
+<div id="progress" style="width:480px;border:1px solid #ccc;"></div>
+
+<div id="information" style="width"></div>
+<?php
     if(isset($_POST['but_import'])){
     if (isset($_FILES['importfile']['error']) && $_FILES['importfile']['error'] == 4) {
           echo "Please select an image file ..";
@@ -86,7 +100,7 @@ include "config.php";
                         echo "";
                     }
 
-                    mysqli_query($con,"TRUNCATE TABLE $table");
+                    
                     $skip = 0;
                     foreach($importData_arr as $data){
 
@@ -105,6 +119,11 @@ include "config.php";
                             mysqli_query($con,$res);
                             $percent = intval($skip/($noofrec-1) * 100)."%";
                         }
+                        echo '<script language="javascript">
+                        document.getElementById("progress").innerHTML="<div style=\"width:'.$percent.';background-color:#ddd;\">&nbsp;</div>";
+                        </script>';
+                        
+                        flush();
                         $skip++;
                     }
 
@@ -131,43 +150,7 @@ include "config.php";
     
     }
     ?>
-</head>
-<body>
-<h1>Batman Server</h1>
-<h2>Upload the CSV data to database</h2>
-<h3>
-        <form method='post' action='' enctype="multipart/form-data">
-        <label for="myfile">Select a file:</label>
-            <input type="file" name="importfile"><br><br><br>
-            <h4><input type="submit" name="but_import" value='Start'></h4>
-        </form>
-</h3>
-<div id="progress" style="width:480px;border:1px solid #ccc;"></div>
 
-<div id="information" style="width"></div>
-<?php
-
-if(isset($_POST['but_import'])){
-if (!(isset($_FILES['importfile']['error']) && $_FILES['importfile']['error'] == 4)) {
-  $filename=$_FILES['importfile']['name'];
-$table = basename($filename,".csv");
-$records = file($filename);
-$noofrec = count($records);
-while($skip<=$noofrec){
-    $result = mysqli_query($con,"SELECT * FROM $table");
-    $skip = mysqli_num_rows($result);
-    $percent = intval(($skip/$noofrec * 100)+2)."%";
-
-    echo '<script language="javascript">
-    document.getElementById("progress").innerHTML="<div style=\"width:'.$percent.';background-color:#ddd;\">&nbsp;</div>";
-    </script>';
-    echo str_repeat(' ',1024*64);
-    flush();
-}
-}
-}
-
-?>
 
 </body>
 </html> 
