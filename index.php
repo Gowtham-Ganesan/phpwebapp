@@ -21,10 +21,14 @@ include "config.php";
 <div id="progress" style="width:480px;border:1px solid #ccc;"></div>
 
 <div id="information" style="width"></div>
+
 <?php
+
     if(isset($_POST['but_import'])){
     if (isset($_FILES['importfile']['error']) && $_FILES['importfile']['error'] == 4) {
-          echo "Please select an image file ..";
+        echo '<script type="text/javascript">';
+        echo ' alert("Please select the file")';  
+        echo '</script>';
   
         }
         else{
@@ -121,6 +125,7 @@ include "config.php";
                         }
                         echo '<script language="javascript">
                         document.getElementById("progress").innerHTML="<div style=\"width:'.$percent.';background-color:#ddd;\">&nbsp;</div>";
+                        document.getElementById("information").innerHTML="'.$skip.' row(s) processed.";
                         </script>';
                         
                         flush();
@@ -142,7 +147,7 @@ include "config.php";
                     echo '<script type="text/javascript">';
                     echo ' alert('.$st.')';  
                     echo '</script>';
-                  }
+                  }       
                 }
             }
         }
